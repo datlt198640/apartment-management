@@ -1,0 +1,170 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-09-24 13:33+0700\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: modules/account/doctor/models.py:32
+msgid "doctor uid"
+msgstr ""
+
+#: modules/account/doctor/models.py:36
+msgid "id number"
+msgstr ""
+
+#: modules/account/doctor/models.py:83
+msgid "doctor"
+msgstr ""
+
+#: modules/account/doctor/models.py:113
+msgid "contract uid"
+msgstr ""
+
+#: modules/account/doctor/models.py:134
+msgid "contract"
+msgstr ""
+
+#: modules/account/staff/forms.py:23 modules/account/staff/helpers/srs.py:64
+msgid "the number of Vinmec site of base staff must be one!"
+msgstr ""
+
+#: modules/account/user/models.py:10
+msgid "phone_number"
+msgstr ""
+
+#: modules/account/user/models.py:21
+msgid "user"
+msgstr ""
+
+#: modules/account/user/models.py:37
+msgid "Email and phone number can not be blank together"
+msgstr ""
+
+#: modules/account/user/tests/test_auth.py:103
+#: modules/account/user/views/auth.py:100
+msgid "Incorrect current password"
+msgstr ""
+
+#: modules/account/user/views/auth.py:41
+msgid "Incorrect login information. Please try again"
+msgstr ""
+
+#: modules/account/user/views/auth.py:57
+msgid "This user is inactive"
+msgstr ""
+
+#: modules/account/user/views/auth.py:162 modules/noti/verif/views/custom.py:17
+msgid "Invalid OTP"
+msgstr ""
+
+#: modules/account/user/views/auth.py:171
+msgid "Can not reset password"
+msgstr ""
+
+#: modules/finance/transaction/helpers/model_utils.py:87
+msgid "Start date and end date are mandatory"
+msgstr ""
+
+#: modules/finance/transaction/helpers/model_utils.py:91
+msgid "Maximum date range is 1 year"
+msgstr ""
+
+#: modules/finance/transaction/views/custom.py:55
+msgid "Missing month and year for uploading"
+msgstr ""
+
+#: modules/noti/verif/helpers/model_utils.py:143
+msgid "You have entered incorrect OTP so many times. Please try again later"
+msgstr ""
+
+#: modules/noti/verif/helpers/model_utils.py:171
+msgid "Can not send OTP, please try again after 90 seconds"
+msgstr ""
+
+#: modules/sale/product/models.py:22
+msgid "product title"
+msgstr ""
+
+#: modules/sale/product/models.py:43 modules/sale/product_detail/models.py:11
+#: modules/sale/sale_kit/models.py:18
+msgid "product"
+msgstr ""
+
+#: modules/sale/product_detail/models.py:13
+msgid "product detail title"
+msgstr ""
+
+#: modules/sale/product_detail/models.py:23
+msgid "product detail"
+msgstr ""
+
+#: modules/sale/sale_kit/models.py:20
+msgid "salekit title"
+msgstr ""
+
+#: services/helpers/res_utils.py:43
+msgid "This user didn't associate with any profile."
+msgstr ""
+
+#: services/helpers/translate_utils.py:7
+#, python-brace-format
+msgid "Ensure this value is less than or equal to {max_value}."
+msgstr ""
+
+#: services/helpers/translate_utils.py:8
+#, python-brace-format
+msgid "Ensure this value is greater than or equal to {min_value}."
+msgstr ""
+
+#: services/helpers/translate_utils.py:9
+#, python-brace-format
+msgid "Ensure this field has no more than {max_length} characters."
+msgstr ""
+
+#: services/helpers/translate_utils.py:10
+#, python-brace-format
+msgid "Ensure this field has at least {min_length} characters."
+msgstr ""
+
+#: services/helpers/translate_utils.py:11
+#, python-brace-format
+msgid "Date has wrong format. Use one of these formats instead: {format}."
+msgstr ""
+
+#: services/helpers/translate_utils.py:12
+#, python-brace-format
+msgid "The fields {field_names} must make a unique set."
+msgstr ""
+
+#: services/helpers/utils.py:681
+msgid "Make sure your password is at least 8 letters"
+msgstr ""
+
+#: services/helpers/utils.py:684
+msgid "Make sure your password has a number in it"
+msgstr ""
+
+#: services/helpers/utils.py:687
+msgid "Make sure your password has a capital letter in it"
+msgstr ""
+
+#: services/helpers/utils.py:741
+msgid "Our system detects that you could be a robot. Please try again."
+msgstr ""
+
+#: services/validators/validator.py:19
+msgid "Invalid phone number format"
+msgstr ""

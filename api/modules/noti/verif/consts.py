@@ -1,0 +1,2 @@
+class TargetAccount:
+    STAFF = "staff"

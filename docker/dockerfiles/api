@@ -1,0 +1,32 @@
+FROM python:3.10.2-buster
+
+RUN apt-get update && apt-get install -y \
+        gcc python3-dev freetds-dev musl-dev \
+        # build-base \
+        # jpeg-dev \
+        # zlib-dev \
+        # libxml2 \
+        # libxml2-dev \
+        # libxslt \
+        # libxslt-dev \
+        # linux-headers \
+        # py3-cffi \
+        # py3-cryptography \
+        # gettext \
+        # libffi-dev \
+        # openssl-dev \
+        # bash \ 
+ && rm -rf /var/lib/apt/lists/*
+
+
+ENV PYTHONUNBUFFERED 1
+ENV CRYPTOGRAPHY_DONT_BUILD_RUST 1
+RUN mkdir /code
+RUN mkdir /firebase
+WORKDIR /code
+
+ADD ./requirements.txt /code/
+RUN python3 -m pip install --upgrade pip
+RUN python3 -m pip install cryptography
+RUN python3 -m pip install -r requirements.txt
+

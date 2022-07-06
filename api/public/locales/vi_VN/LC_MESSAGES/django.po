@@ -1,0 +1,177 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-09-24 13:33+0700\n"
+"PO-Revision-Date: 2021-09-24 13:32+0700\n"
+"Last-Translator: Son Tran <tranbacson@zen8labs.com>\n"
+"Language-Team: \n"
+"Language: vi_VN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.0\n"
+
+#: modules/account/doctor/models.py:32
+msgid "doctor uid"
+msgstr "mã cộng tác viên"
+
+#: modules/account/doctor/models.py:36
+msgid "id number"
+msgstr "số chứng minh thư"
+
+#: modules/account/doctor/models.py:83
+msgid "doctor"
+msgstr "cộng tác viên"
+
+#: modules/account/doctor/models.py:113
+msgid "contract uid"
+msgstr "mã hợp đồng"
+
+#: modules/account/doctor/models.py:134
+msgid "contract"
+msgstr "hợp đồng"
+
+#: modules/account/staff/forms.py:23 modules/account/staff/helpers/srs.py:64
+msgid "the number of Vinmec site of base staff must be one!"
+msgstr "chuyên viên cơ sở chỉ được hoạt động trong phạm vi 1 site!"
+
+#: modules/account/user/models.py:10
+msgid "phone_number"
+msgstr "số điện thoại"
+
+#: modules/account/user/models.py:21
+msgid "user"
+msgstr "người dùng"
+
+#: modules/account/user/models.py:37
+msgid "Email and phone number can not be blank together"
+msgstr "Email và số điện thoại không thể đồng thời để rỗng"
+
+#: modules/account/user/tests/test_auth.py:103
+#: modules/account/user/views/auth.py:100
+msgid "Incorrect current password"
+msgstr "Sai mật khẩu hiện tại"
+
+#: modules/account/user/views/auth.py:41
+msgid "Incorrect login information. Please try again"
+msgstr "Incorrect login information. Please try again"
+
+#: modules/account/user/views/auth.py:57
+msgid "This user is inactive"
+msgstr "Người dùng này đang bị khóa"
+
+#: modules/account/user/views/auth.py:162 modules/noti/verif/views/custom.py:17
+msgid "Invalid OTP"
+msgstr "OTP không hợp lệ"
+
+#: modules/account/user/views/auth.py:171
+msgid "Can not reset password"
+msgstr "Không thể reset mật khẩu"
+
+#: modules/finance/transaction/helpers/model_utils.py:87
+msgid "Start date and end date are mandatory"
+msgstr "Ngày bắt đầu và ngày kết thúc là bắt buộc"
+
+#: modules/finance/transaction/helpers/model_utils.py:91
+msgid "Maximum date range is 1 year"
+msgstr "Khoảng ngày tối đa là 1 năm"
+
+#: modules/finance/transaction/views/custom.py:55
+msgid "Missing month and year for uploading"
+msgstr "Thiếu ngày và tháng khi upload"
+
+#: modules/noti/verif/helpers/model_utils.py:143
+msgid "You have entered incorrect OTP so many times. Please try again later"
+msgstr "Bạn đã nhập OTP sai nhiều lần. Bạn vui lòng thử lại sau"
+
+#: modules/noti/verif/helpers/model_utils.py:171
+msgid "Can not send OTP, please try again after 90 seconds"
+msgstr "Không thể gửi OTP, bạn vui lòng thử lại trong 90 giây"
+
+#: modules/sale/product/models.py:22
+msgid "product title"
+msgstr "tên sản phẩm"
+
+#: modules/sale/product/models.py:43 modules/sale/product_detail/models.py:11
+#: modules/sale/sale_kit/models.py:18
+msgid "product"
+msgstr "sản phẩm"
+
+#: modules/sale/product_detail/models.py:13
+msgid "product detail title"
+msgstr "tiêu đề chi tiết sản phẩm"
+
+#: modules/sale/product_detail/models.py:23
+msgid "product detail"
+msgstr "chi tiết sản phẩm"
+
+#: modules/sale/sale_kit/models.py:20
+msgid "salekit title"
+msgstr "salekit"
+
+#: services/helpers/res_utils.py:43
+msgid "This user didn't associate with any profile."
+msgstr "Người dùng này không phải là nhân viên hoặc bác sĩ."
+
+#: services/helpers/translate_utils.py:7
+#, python-brace-format
+msgid "Ensure this value is less than or equal to {max_value}."
+msgstr "Đảm bảo giá trị này là nhỏ hơn hoặc bằng với {max_value}."
+
+#: services/helpers/translate_utils.py:8
+#, python-brace-format
+msgid "Ensure this value is greater than or equal to {min_value}."
+msgstr "Đảm bảo giá trị này lớn hơn hoặc bằng với {min_value}."
+
+#: services/helpers/translate_utils.py:9
+#, python-brace-format
+msgid "Ensure this field has no more than {max_length} characters."
+msgstr "Đảm bảo trường này không có nhiều hơn {max_length} ký tự."
+
+#: services/helpers/translate_utils.py:10
+#, python-brace-format
+msgid "Ensure this field has at least {min_length} characters."
+msgstr "Đảm bảo trường này có ít nhất {min_length} ký tự."
+
+#: services/helpers/translate_utils.py:11
+#, python-brace-format
+msgid "Date has wrong format. Use one of these formats instead: {format}."
+msgstr ""
+"Ngày có định dạng sai. Thay vào đó, hãy sử dụng một trong các định dạng sau: "
+"{format}."
+
+#: services/helpers/translate_utils.py:12
+#, python-brace-format
+msgid "The fields {field_names} must make a unique set."
+msgstr "Các trường {field_names} phải là 1 nhóm duy nhất."
+
+#: services/helpers/utils.py:681
+msgid "Make sure your password is at least 8 letters"
+msgstr "Mật khẩu cần có độ dài ít nhất 8 ký tự"
+
+#: services/helpers/utils.py:684
+msgid "Make sure your password has a number in it"
+msgstr "Mật khẩu cần bao gồm ít nhất một chữ số"
+
+#: services/helpers/utils.py:687
+msgid "Make sure your password has a capital letter in it"
+msgstr "Mật khẩu cần bao gồm ít nhất một ký tự viết hoa"
+
+#: services/helpers/utils.py:741
+msgid "Our system detects that you could be a robot. Please try again."
+msgstr ""
+"Hệ thống của chúng tôi phát hiện ra bạn có thể là robot. Bạn vui lòng thử "
+"lại."
+
+#: services/validators/validator.py:19
+msgid "Invalid phone number format"
+msgstr "Sai định dạng số điện thoại"
+
+#~ msgid "product, title"
+#~ msgstr "sản phẩm, tiêu đề"

@@ -1,0 +1,84 @@
+version: "2.1"
+
+services:
+  aptm_db:
+    container_name: aptm_db
+    image: "postgres:11.12-alpine"
+    environment:
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_DB=${POSTGRES_DB}
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./ls.sql:/docker-entrypoint-initdb.d/db.sql
+      - ./dbdata:/var/lib/postgresql/data/:delegated
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+  aptm_api:
+    container_name: aptm_api
+    build:
+      context: ../api
+      dockerfile: ../docker/dockerfiles/api
+    volumes:
+      - ../api:/code:delegated
+      - ./firebase:/firebase
+    environment:
+      - SECRET_KEY=${SECRET_KEY}
+      - DEBUG=${DEBUG}
+      - JWT_DEBUG=${JWT_DEBUG}
+
+      - EMAIL_ENABLE=${EMAIL_ENABLE}
+      - SMS_ENABLE=${SMS_ENABLE}
+      - PROTOCOL=${PROTOCOL}
+      - DOMAIN=${DOMAIN}
+
+      - APP_TITLE=${APP_TITLE}
+
+      - REMOTE_DB_SERVER=${REMOTE_DB_SERVER}
+      - REMOTE_DB_MEMBER_USER=${REMOTE_DB_MEMBER_USER}
+      - REMOTE_DB_MEMBER_PASSWORD=${REMOTE_DB_MEMBER_PASSWORD}
+      - REMOTE_DB_MEMBER_DATABASE=${REMOTE_DB_MEMBER_DATABASE}
+
+      - DB_USER=${POSTGRES_USER}
+      - DB_PASSWORD=${POSTGRES_PASSWORD}
+      - DB_NAME=${POSTGRES_DB}
+      - DB_HOST=${POSTGRES_HOST}
+      - DB_PORT=5432
+      - DB_TEST=aptm_test
+
+    depends_on:
+      aptm_db:
+        condition: service_healthy
+    tty: ${DOCKER_TTY}
+    # command: ${DOCKER_COMMAND}
+
+  aptm_web:
+    container_name: aptm_web
+    build:
+      context: ../web
+      dockerfile: ../docker/dockerfiles/web
+    volumes:
+      - ../web:/code:delegated
+      - /code/node_modules
+    tty: ${DOCKER_TTY}
+    command: ${DOCKER_WEB_COMMAND}
+
+  aptm_nginx:
+    container_name: aptm_nginx
+    build:
+      context: ./
+      dockerfile: ./dockerfiles/nginx
+    restart: always
+    volumes:
+      - ./conf.d:/etc/nginx/conf.d
+      - ${SSL_PATH}:/resource/ssl
+      - ../api/public/:/resource/public
+    ports:
+      - "80:80"
+      - "443:443"
+    depends_on:
+      - aptm_api

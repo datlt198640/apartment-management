@@ -1,0 +1,8 @@
+STAFF_MANAGER = "Manager"
+STAFF_ADMIN = "Manager"
+MEMBER_GROUP = "Member"
+GROUP_NAMES = [
+    STAFF_MANAGER,
+    STAFF_ADMIN,
+    MEMBER_GROUP,
+]

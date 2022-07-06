@@ -1,0 +1,5 @@
+class SettingVariables:
+    MAX_OTP_PER_TARGET_PER_DAY = 10
+    VERIF_TARGET_EMAIL = ""
+    VERIF_TARGET_PHONE_NUMBER = ""
+    DATE_SEND_NOTI_EVENT = "8,2,1"

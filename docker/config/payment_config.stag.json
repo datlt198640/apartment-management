@@ -1,0 +1,98 @@
+{
+    "HO": {
+        "payment_gw": {
+            "BASE_URL": "https://alepay-v3-sandbox.nganluong.vn/api/v3/checkout",
+            "TOKEN_KEY": "Wtayo3L8fTygvZzG2qC9R7cNnRbu5I",
+            "CHECKSUM_KEY": "vVxcObuDe1wVrUCgcamsw5FwVKJVMn"
+        },
+        "bank": {
+            "name": "Ngân hàng TMCP Quân đội (MB Bank) - Chi nhánh sở giao dịch 1 Cát Linh",
+            "account_name": "CTCP BVDK Quốc Tế Vinmec",
+            "account_number": "0381150162970"
+        }
+    },
+    "VMTC": {
+        "payment_gw": {
+            "BASE_URL": "https://alepay-v3-sandbox.nganluong.vn/api/v3/checkout",
+            "TOKEN_KEY": "YeRGwWNX1PB1HRJIBD9ivSToF2ZBgA",
+            "CHECKSUM_KEY": "4ePZdqyJkGXxppnz5lkIitl22XGNqr"
+        },
+        "bank": {
+            "name": "Ngân hàng Vietcombank – Chi nhánh sở giao dịch",
+            "account_name": "Tên tài khoản: CHI NHÁNH CÔNG TY CP BV ĐKQT VINMEC - BỆNH VIỆN VINMEC TIMES CITY",
+            "account_number": "0011004254605"
+        }
+    },
+    "VMCP": {
+        "payment_gw": {
+            "BASE_URL": "https://alepay-v3-sandbox.nganluong.vn/api/v3/checkout",
+            "TOKEN_KEY": "YSNgErFra2l93YO4vCSBXgXdRlo791",
+            "CHECKSUM_KEY": "RXzgWcsohtRiRGrq4PmZq5kAWTxQlF"
+        },
+        "bank": {
+            "name": "Ngân hàng BIDV - chi nhánh Gia Định",
+            "account_name": "Tên tài khoản: CHI NHÁN CÔNG TY CỔ PHẦN BỆNH VIỆN ĐA KHOA QUỐC TẾ VINMEC - BỆNH VIỆN ĐKQT VINMEC CENTRAL PARK",
+            "account_number": "13510007207202"
+        }
+    },
+    "VMĐN": {
+        "payment_gw": {
+            "BASE_URL": "https://alepay-v3-sandbox.nganluong.vn/api/v3/checkout",
+            "TOKEN_KEY": "LN41dBAf5ruCi7JzmwmDSukMogvWf1",
+            "CHECKSUM_KEY": "kcvWzuDbfVdKE7FfqZAuEj73WXNNsS"
+        },
+        "bank": {
+            "name": "Ngân hàng Vietcombank - Chi nhánh Đà Nẵng",
+            "account_name": "Vinmec Danang Branch",
+            "account_number": "1001001008989"
+        }
+    },
+    "VMNT": {
+        "payment_gw": {
+            "BASE_URL": "https://alepay-v3-sandbox.nganluong.vn/api/v3/checkout",
+            "TOKEN_KEY": "a9JA71Zxivme4CbkN3N8CKtuHCR9Vc",
+            "CHECKSUM_KEY": "9PvTfEymG8qB26XuQ7BSyyF6CKNFK5"
+        },
+        "bank": {
+            "name": "Ngân hàng BIDV - Chi nhánh Quang Trung HN",
+            "account_name": "CN CTY CP BVĐKQT Vinmec - BVĐKQT Vimec Nha Trang",
+            "account_number": "12310001083692"
+        }
+    },
+    "VMHL": {
+        "payment_gw": {
+            "BASE_URL": "https://alepay-v3-sandbox.nganluong.vn/api/v3/checkout",
+            "TOKEN_KEY": "71idFy8LN0Tga2IzPMMqDk8MZbQs5t",
+            "CHECKSUM_KEY": "3pslY4E93QhQtCwRDtiz30ybQ6jxeA"
+        },
+        "bank": {
+            "name": "Ngân Hàng Vietcombank - Chi nhánh Hạ Long",
+            "account_name": "Chi nhánh Công ty cổ phần Bệnh viện đa khoa quốc tế Vinmec - Bệnh viện đa khoa quốc tế Vinmec Hạ Long",
+            "account_number": "0521000000999"
+        }
+    },
+    "VMHP": {
+        "payment_gw": {
+            "BASE_URL": "https://alepay-v3-sandbox.nganluong.vn/api/v3/checkout",
+            "TOKEN_KEY": "XR7ZCnxfYJxkkxO9ZPvXq0s3o41a3t",
+            "CHECKSUM_KEY": "xiEgsOHq05L2R6oLlOucPnfMwUZ1ej"
+        },
+        "bank": {
+            "name": "Ngân hàng BIDV - Chi nhánh Hải Phòng",
+            "account_name": "CNCTCPBVDKQTVinmec - BVDKQTvinmec Hải Phòng",
+            "account_number": "32110009399999"
+        }
+    },
+    "VMPQ": {
+        "payment_gw": {
+            "BASE_URL": "https://alepay-v3-sandbox.nganluong.vn/api/v3/checkout",
+            "TOKEN_KEY": "u4kUIGmbVA3iKJ8QyGtWYSI6KheD6a",
+            "CHECKSUM_KEY": "6vcFMKIZfSgDqjya2cBTEUUqkNcMlr"
+        },
+        "bank": {
+            "name": "Ngân hàng BIDV - chi nhánh Phú Quốc",
+            "account_name": "CN tại tỉnh Kiên Giang - Cty CP bệnh viện đa khoa quốc tế Vinmec",
+            "account_number": "75310000093567"
+        }
+    }
+}
