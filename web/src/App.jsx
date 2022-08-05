@@ -9,6 +9,8 @@ import Member from "components/account/member";
 import Profile from "components/account/auth/profile";
 import CheckIn from "components/check_in/check";
 import BookingEvent from "components/event/booking";
+import ManageService from "components/service/managing/service";
+import ManageSubservice from "components/service/managing/subservice";
 import Event from "components/event/create";
 import BookingStay from "components/service/booking/stay";
 import BookingCelebrate from "components/service/booking/celebrate";
@@ -31,13 +33,45 @@ function App() {
 
             <PrivateRoute path="/check-in" component={CheckIn} exact />
 
+            <PrivateRoute
+              path="/manage-service"
+              component={ManageService}
+              exact
+            />
+            <PrivateRoute
+              path="/manage-subservice"
+              component={ManageSubservice}
+              exact
+            />
+            <PrivateRoute
+              path="/manage-subservice-type"
+              component={ManageSubservice}
+              exact
+            />
+            <PrivateRoute
+              path="/manage-subservice-category"
+              component={ManageSubservice}
+              exact
+            />
             <PrivateRoute path="/event" component={Event} exact />
-            <PrivateRoute path="/booking-event" component={BookingEvent} exact />
+            <PrivateRoute
+              path="/booking-event"
+              component={BookingEvent}
+              exact
+            />
 
             <PrivateRoute path="/booking-stay" component={BookingStay} exact />
-            <PrivateRoute path="/booking-celebrate" component={BookingCelebrate} exact />
+            <PrivateRoute
+              path="/booking-celebrate"
+              component={BookingCelebrate}
+              exact
+            />
             <PrivateRoute path="/booking-dine" component={BookingDine} exact />
-            <PrivateRoute path="/booking-relax" component={BookingRelax} exact />
+            <PrivateRoute
+              path="/booking-relax"
+              component={BookingRelax}
+              exact
+            />
 
             <Route component={NotMatch} />
           </Switch>

@@ -12,10 +12,10 @@ import moment from "moment";
  * @param {number} id
  */
 
-const formName = "MemberForm";
+const formName = "ServiceForm";
 
 /**
- * MemberForm.
+ * ServiceForm.
  *
  * @param {Object} props
  * @param {Object} props.data
@@ -25,7 +25,7 @@ const formName = "MemberForm";
 
 const dateFormat = "YYYY/MM/DD";
 
-export default function MemberForm({ data, onChange }) {
+export default function ServiceForm({ data, onChange }) {
   const [form] = Form.useForm();
   const listGender = [
     {
@@ -134,5 +134,5 @@ export default function MemberForm({ data, onChange }) {
   );
 }
 
-MemberForm.displayName = formName;
-MemberForm.formName = formName;
+ServiceForm.displayName = formName;
+ServiceForm.formName = formName;

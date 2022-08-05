@@ -2,7 +2,7 @@ import Utils from "utils/Utils";
 
 const urlMap = {
   base: {
-    prefix: "account/member",
+    prefix: "services/subservice",
     endpoints: {
       crud: "",
     },
@@ -11,7 +11,7 @@ const urlMap = {
 
 export const urls = Utils.prefixMapValues(urlMap.base);
 
-const headingTxt = "Member ";
+const headingTxt = "Service ";
 export const messages = {
   heading: headingTxt,
   deleteOne: `Do you want to delete this ${headingTxt.toLowerCase()}?`,
@@ -20,15 +20,13 @@ export const messages = {
 
 export const emptyRecord = {
   id: 0,
-  phone_number: "",
-  email: "",
-  password: "",
-  fullName: "",
-  groups: "",
-  gender: "",
-  dob: "",
-  occupation: "",
-  address: "",
+  title: "",
+  description: "",
+  content: "",
+  bookable: "",
+  hasMenu: "",
+  type: "",
+  subserviceTitle: "",
 };
 
 export const formLabels = {

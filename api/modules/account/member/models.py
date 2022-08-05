@@ -30,7 +30,6 @@ def upload_avatar(instance, filename):
 
 class Member(TimeStampedModel):
     uid = models.UUIDField(unique=True, default=uuid.uuid4, editable=False)
-    member_remote_id = models.CharField(max_length=225, null=True, default=None)
     user = models.OneToOneField(
         settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     full_name = models.CharField(max_length=128, null=True, default=None)

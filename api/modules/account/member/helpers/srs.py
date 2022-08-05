@@ -19,21 +19,23 @@ class BookingServiceSr(ModelSerializer):
 
     def to_representation(self, obj):
         rep = super().to_representation(obj)
-        member = Member.objects.filter(id = obj.member.id).first()
+        member = Member.objects.filter(id=obj.member.id).first()
         membership = MemberShip.objects.filter(member=member).first()
 
         rep["member_real_name"] = MemberSr(member).data["full_name"]
-        rep["member_real_phone_number"] = UserSr(member.user).data["phone_number"]
+        rep["member_real_phone_number"] = UserSr(
+            member.user).data["phone_number"]
         rep["member_real_email"] = MemberSr(member).data["email"]
         rep["dob"] = MemberSr(member).data["dob"]
         rep["occupation"] = MemberSr(member).data["occupation"]
         rep["address"] = MemberSr(member).data["address"]
         rep["gender"] = MemberSr(member).data["gender"]
         rep["avatar"] = MemberSr(member).data["avatar"]
-        rep["membership_type"] = MemberShipSr(membership).data["membership_type"]
+        rep["membership_type"] = MemberShipSr(
+            membership).data["membership_type"]
         rep["register_date"] = MemberShipSr(membership).data["register_date"]
         rep["expire_date"] = MemberShipSr(membership).data["expire_date"]
-    
+
         return rep
 
 
@@ -41,20 +43,6 @@ class MemberSr(ModelSerializer):
     class Meta:
         model = Model
         exclude = []
-
-
-    def to_internal_value(self, obj):
-        obj = obj.dict() if isinstance(obj, QueryDict) else obj
-
-        member_remote_id = obj["member_remote_id"]
-
-        if member_remote_id:
-            members = Member.objects.filter(member_remote_id = member_remote_id).first()
-            if members:
-                error_message = ("Member remote id must be unique!")
-                raise ValidationError({"detail": [error_message]})
-        
-        return super().to_internal_value(obj)
 
     def to_representation(self, obj):
         rep = super().to_representation(obj)
@@ -93,10 +81,13 @@ class MemberRetrieveSr(MemberSr):
             "updated_at",
             "user",
         ]
+
     def to_representation(self, obj):
         rep = super().to_representation(obj)
-        rep["membership_type"] = MemberShipSr(obj.membership).data["membership_type"]
+        rep["membership_type"] = MemberShipSr(
+            obj.membership).data["membership_type"]
         return rep
+
 
 class MemberPermissionSr(MemberRetrieveSr):
     class Meta(MemberRetrieveSr.Meta):
@@ -117,8 +108,8 @@ class MemberPermissionSr(MemberRetrieveSr):
             obj.membership).data["register_date"]
         rep["expire_date"] = MemberShipSr(obj.membership).data["expire_date"]
         rep["permissions"] = UserModelUtils.get_permissions(obj.user)
-        for service in obj.membership.membership_type.services.all():
-            rep["list_services"].append(ServiceSr(service).data)
+        # for service in obj.membership.membership_type.services.all():
+        #     rep["list_services"].append(ServiceSr(service).data)
         return rep
 
 

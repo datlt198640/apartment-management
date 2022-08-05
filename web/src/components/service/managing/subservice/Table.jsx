@@ -2,11 +2,7 @@ import * as React from "react";
 import { useEffect, useState } from "react";
 import { useSetRecoilState } from "recoil";
 import { Row, Col, Button, Table, Typography } from "antd";
-import {
-  EditOutlined,
-  DeleteOutlined,
-  PlusOutlined,
-} from "@ant-design/icons";
+import { EditOutlined, DeleteOutlined, PlusOutlined } from "@ant-design/icons";
 import Pagination, { defaultLinks } from "utils/components/table/Pagination";
 import SearchInput from "utils/components/table/SearchInput";
 import Utils from "utils/Utils";
@@ -16,7 +12,7 @@ import { listGroupSt } from "./states";
 
 const { Text } = Typography;
 
-export default function MemberTable() {
+export default function ServiceTable() {
   const [init, setInit] = useState(true);
   const [list, setList] = useState([]);
   const [ids, setIds] = useState([]);
@@ -186,4 +182,4 @@ export default function MemberTable() {
   );
 }
 
-MemberTable.displayName = "MemberTable";
+ServiceTable.displayName = "ServiceTable";

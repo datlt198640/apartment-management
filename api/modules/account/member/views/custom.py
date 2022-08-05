@@ -18,15 +18,6 @@ class ProfileView(APIView):
         member = self.get_user().member
 
         data = MemberPermissionSr(member).data
-        if not settings.DEBUG:
-            member_from_rmdb = self.member_mu.get_member_from_remote_db(member.member_remote_id)
-            data["full_name"] = member_from_rmdb["MemberName"]
-            data["dob"] = member_from_rmdb["Dateofbirth"]
-            data["address"] = member_from_rmdb["AddressVN"]
-            data["gender"] = member_from_rmdb["Gender"]
-            data["avatar"] = member_from_rmdb["Picture"]
-            data["register_date"] = member_from_rmdb["JoinDate"]
-            data["expire_date"] = member_from_rmdb["CancelDate"]
 
         return ResUtils.res(data)
 

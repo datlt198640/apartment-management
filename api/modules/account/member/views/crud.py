@@ -26,19 +26,13 @@ class MemberViewSet(GenericViewSet):
         self.mu = MemberModelUtils()
 
     def get_queryset(self):
-        return Member.objects.exclude(member_remote_id = None)
+        return Member.objects.all()
 
     def list(self, request):
         queryset = self.get_queryset()
         queryset = self.filter_queryset(queryset)
         queryset = self.paginate_queryset(queryset)
         items = MemberPermissionSr(queryset, many=True).data
-        if not settings.DEBUG:
-            member_remotes = self.mu.get_list_member_from_remote_db()
-            for item in items:
-                for member_remote in member_remotes:
-                    if item["member_remote_id"] == member_remote["member_remote_id"]:
-                        self.mu.convert_key_member(item, member_remote)
         result = {
             "items": items,
             "extra": {
@@ -52,8 +46,6 @@ class MemberViewSet(GenericViewSet):
     def retrieve(self, request, pk=None):
         obj = get_object_or_404(Member, pk=pk)
         result = MemberRetrieveSr(obj).data
-        if settings.DEBUG:
-            result = self.mu.get_member_from_remote_db(pk)
         return ResUtils.res(result)
 
     @transaction.atomic
@@ -69,16 +61,12 @@ class MemberViewSet(GenericViewSet):
         obj = get_object_or_404(Member, pk=pk)
         data = request.data
         obj = self.mu.update_item(obj, data)
-        if not settings.DEBUG:
-            result = self.mu.update_member_from_remote_db(obj.member_remote_id, data)
-        return ResUtils.res(result)
+        return ResUtils.res(MemberSr(obj).data)
 
     @action(methods=["delete"], detail=True)
     def delete(self, request, pk=None):
         item = get_object_or_404(Member, pk=pk)
         item.delete()
-        if not settings.DEBUG:
-            self.mu.remove_member_from_remote_db(item.member_remote_id)
         return ResUtils.res(status=status.HTTP_204_NO_CONTENT)
 
     @action(methods=["delete"], detail=False)
@@ -89,6 +77,4 @@ class MemberViewSet(GenericViewSet):
         for pk in pks:
             item = get_object_or_404(Member, pk=pk)
             item.delete()
-            if not settings.DEBUG:
-                self.mu.remove_member_from_remote_db(item.member_remote_id)
         return ResUtils.res(status=status.HTTP_204_NO_CONTENT)

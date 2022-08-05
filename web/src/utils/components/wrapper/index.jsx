@@ -8,13 +8,10 @@ import {
   UserOutlined,
   TeamOutlined,
   LogoutOutlined,
-  SettingFilled,
-  UsergroupAddOutlined,
   CheckOutlined,
   CalendarOutlined,
   AccountBookOutlined,
 } from "@ant-design/icons";
-import { LOGO_TEXT } from "utils/constants";
 import Utils from "utils/Utils";
 import "./styles.css";
 
@@ -74,7 +71,7 @@ export default function Wrapper({ children }) {
             fontSize: "30px",
           }}
         >
-          RVS
+          APTM
         </div>
         {/* <Divider /> */}
         <Menu
@@ -106,6 +103,43 @@ export default function Wrapper({ children }) {
               </NavLink>
             </Menu.Item>
           )}
+          {visibleMenus.includes("add_service") && (
+            <Menu.Item key="/manage-service" style={{ margin: "30px auto" }}>
+              <NavLink to="/manage-service">
+                <CalendarOutlined />
+                <MenuLabel collapsed={collapsed} label="Manage Service" />
+              </NavLink>
+            </Menu.Item>
+          )}
+          {visibleMenus.includes("view_bookingservice") && (
+            <SubMenu
+              key="service"
+              icon={<AccountBookOutlined />}
+              title="Manage Subservice"
+            >
+              <Menu.Item key="/stay" style={{ margin: "30px auto" }}>
+                <NavLink to="/manage-subservice">
+                  <AccountBookOutlined />
+                  <MenuLabel collapsed={collapsed} label="Subservice" />
+                </NavLink>
+              </Menu.Item>
+              <Menu.Item key="/stay" style={{ margin: "30px auto" }}>
+                <NavLink to="/manage-subservice">
+                  <AccountBookOutlined />
+                  <MenuLabel collapsed={collapsed} label="Subservice Type" />
+                </NavLink>
+              </Menu.Item>
+              <Menu.Item key="/stay" style={{ margin: "30px auto" }}>
+                <NavLink to="/manage-subservice">
+                  <AccountBookOutlined />
+                  <MenuLabel
+                    collapsed={collapsed}
+                    label="Subservice Category"
+                  />
+                </NavLink>
+              </Menu.Item>
+            </SubMenu>
+          )}
           {visibleMenus.includes("view_event") && (
             <Menu.Item key="/event" style={{ margin: "30px auto" }}>
               <NavLink to="/event">
@@ -123,7 +157,11 @@ export default function Wrapper({ children }) {
             </Menu.Item>
           )}
           {visibleMenus.includes("view_bookingservice") && (
-            <SubMenu key="service" icon={<AccountBookOutlined />} title="Booking Service">
+            <SubMenu
+              key="service"
+              icon={<AccountBookOutlined />}
+              title="Booking Service"
+            >
               <Menu.Item key="/stay" style={{ margin: "30px auto" }}>
                 <NavLink to="/booking-stay">
                   <AccountBookOutlined />
@@ -156,13 +194,22 @@ export default function Wrapper({ children }) {
         <Header className="site-layout-header" style={{ padding: 0 }}>
           <Row>
             <Col span={12}>
-              {React.createElement(collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, {
-                className: "trigger",
-                onClick: toggle,
-              })}
+              {React.createElement(
+                collapsed ? MenuUnfoldOutlined : MenuFoldOutlined,
+                {
+                  className: "trigger",
+                  onClick: toggle,
+                }
+              )}
             </Col>
             <Col span={12} className="right" style={{ paddingRight: 20 }}>
-              <Popconfirm placement="left" title={text} onConfirm={logout} okText="Yes" cancelText="No">
+              <Popconfirm
+                placement="left"
+                title={text}
+                onConfirm={logout}
+                okText="Yes"
+                cancelText="No"
+              >
                 <span className="pointer">
                   <span>{Utils.getStorageObj("auth").fullname}</span>
                   &nbsp;&nbsp;
@@ -172,7 +219,10 @@ export default function Wrapper({ children }) {
             </Col>
           </Row>
         </Header>
-        <Content className="site-layout-content" style={{ padding: "20px 20px" }}>
+        <Content
+          className="site-layout-content"
+          style={{ padding: "20px 20px" }}
+        >
           {children}
         </Content>
       </Layout>

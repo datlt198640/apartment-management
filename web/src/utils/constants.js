@@ -12,5 +12,5 @@ export const API_PREFIX = "/api/v1/";
 export const LOCAL_STORAGE_PREFIX = APP_NAMESPACE;
 
 export const History = createBrowserHistory({});
-export const LOGO_TEXT = ENV.VITE_LOGO_TEXT || "RVS";
+export const LOGO_TEXT = ENV.VITE_LOGO_TEXT || "APTM";
 export const HR_DEPUTY = ENV.VITE_HR_DEPUTY || "Ban Phát triển Nhân lực";

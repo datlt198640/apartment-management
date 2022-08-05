@@ -164,7 +164,7 @@ class ResetPwdView(APIView):
             Utils.get_ip_list(request),
             username,
             "reset_password",
-            {"subject": "[RVS] Request to reset system password",
+            {"subject": "[APTM] Request to reset system password",
                 "name": name},
         )
 

@@ -2,11 +2,7 @@ import * as React from "react";
 import { useEffect, useState } from "react";
 import { useSetRecoilState } from "recoil";
 import { Row, Col, Button, Table, Typography } from "antd";
-import {
-  EditOutlined,
-  DeleteOutlined,
-  PlusOutlined,
-} from "@ant-design/icons";
+import { EditOutlined, DeleteOutlined, PlusOutlined } from "@ant-design/icons";
 import Pagination, { defaultLinks } from "utils/components/table/Pagination";
 import SearchInput from "utils/components/table/SearchInput";
 import Utils from "utils/Utils";
@@ -16,7 +12,7 @@ import { listGroupSt } from "./states";
 
 const { Text } = Typography;
 
-export default function MemberTable() {
+export default function ServiceTable() {
   const [init, setInit] = useState(true);
   const [list, setList] = useState([]);
   const [ids, setIds] = useState([]);
@@ -24,19 +20,19 @@ export default function MemberTable() {
 
   const setListGroup = useSetRecoilState(listGroupSt);
 
-  const convertIdToLabel = (data) => {
-    const genderValue = [
-      { value: 0, label: "Male" },
-      { value: 1, label: "Female" },
-    ];
+  // const convertIdToLabel = (data) => {
+  //   const genderValue = [
+  //     { value: 0, label: "Male" },
+  //     { value: 1, label: "Female" },
+  //   ];
 
-    Utils.idToLabel(
-      data.items,
-      data.extra.list_membership_type,
-      "membership_type"
-    );
-    Utils.idToLabel(data.items, genderValue, "gender");
-  };
+  //   Utils.idToLabel(
+  //     data.items,
+  //     data.extra.list_membership_type,
+  //     "membership_type"
+  //   );
+  //   Utils.idToLabel(data.items, genderValue, "gender");
+  // };
 
   const getList =
     (showLoading = false) =>
@@ -45,9 +41,9 @@ export default function MemberTable() {
       Utils.apiCall(url ? url : urls.crud, params)
         .then((resp) => {
           setLinks(resp.data.links);
-          convertIdToLabel(resp.data);
+          // convertIdToLabel(resp.data);
           setList(Utils.appendKey(resp.data.items));
-          setListGroup(resp.data.extra.list_group);
+          // setListGroup(resp.data.extra.list_group);
         })
         .finally(() => {
           setInit(false);
@@ -176,14 +172,14 @@ export default function MemberTable() {
         scroll={{ x: 1000 }}
         pagination={false}
       />
-      <Pagination
+      {/* <Pagination
         next={links.next}
         prev={links.previous}
         onChange={getList(true)}
-      />
+      /> */}
       <Dialog onChange={onChange} />
     </div>
   );
 }
 
-MemberTable.displayName = "MemberTable";
+ServiceTable.displayName = "ServiceTable";

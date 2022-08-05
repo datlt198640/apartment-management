@@ -1,6 +1,15 @@
 import { useRecoilValue } from "recoil";
 import React, { useState } from "react";
-import { Typography, Card, Row, Form, Avatar, notification, Col, Skeleton } from "antd";
+import {
+  Typography,
+  Card,
+  Row,
+  Form,
+  Avatar,
+  notification,
+  Col,
+  Skeleton,
+} from "antd";
 import Utils from "utils/Utils";
 import { urls, emptyRecord } from "../config";
 import { ArrowRightOutlined } from "@ant-design/icons";
@@ -49,6 +58,7 @@ export default function CheckInForm({ data, onChange }) {
   };
 
   const handleScan = (data) => {
+    console.log("data", data);
     if (data) {
       const result = listMember.filter((member) => member.uid == data)[0];
       if (!result) {
@@ -73,17 +83,48 @@ export default function CheckInForm({ data, onChange }) {
   };
 
   return (
-    <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
-      <Row style={{ display: "flex", justifyContent: "center", alignItems: "center", width: "100%" }}>
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+    >
+      <Row
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          width: "100%",
+        }}
+      >
         <Col xs={10} sm={10} md={10} lg={10} xl={10} xxl={10}>
-          <Form form={form} name={formName} onFinish={CheckIn} className={styles.column}>
-            <QrScan delay={300} className={styles.qrScan} onError={handleError} onScan={handleScan} />
+          <Form
+            form={form}
+            name={formName}
+            onFinish={CheckIn}
+            className={styles.column}
+          >
+            <QrScan
+              delay={300}
+              className={styles.qrScan}
+              onError={handleError}
+              onScan={handleScan}
+            />
           </Form>
         </Col>
         <Col xs={4} sm={4} md={4} lg={4} xl={4} xxl={4}>
           <ArrowRightOutlined className={styles.icon} />
         </Col>
-        <Col xs={10} sm={10} md={10} lg={10} xl={10} xxl={10} className={styles.column}>
+        <Col
+          xs={10}
+          sm={10}
+          md={10}
+          lg={10}
+          xl={10}
+          xxl={10}
+          className={styles.column}
+        >
           {qrMember == -1 ? (
             <Skeleton active />
           ) : (
@@ -91,20 +132,30 @@ export default function CheckInForm({ data, onChange }) {
               <Row justify={"center"} align={"center"}>
                 <Avatar src={qrMember?.avatar} className={styles.avatar} />
               </Row>
-              <Text  className={styles.title} style={{ marginBottom: 0 }}>
+              <Text className={styles.title} style={{ marginBottom: 0 }}>
                 {qrMember?.full_name}{" "}
               </Text>
               <Row>
-                <Text className={styles.subTitle}>{qrMember?.membership_type?.title} </Text>
+                <Text className={styles.subTitle}>
+                  {qrMember?.membership_type?.title}{" "}
+                </Text>
               </Row>
               <Row>
-                <Text className={styles.text}>Date of birth: {qrMember?.dob}</Text>
+                <Text className={styles.text}>
+                  Date of birth: {qrMember?.dob}
+                </Text>
               </Row>
               <Row>
-                <Text className={styles.text}> Occupation: {qrMember?.occupation} </Text>
+                <Text className={styles.text}>
+                  {" "}
+                  Occupation: {qrMember?.occupation}{" "}
+                </Text>
               </Row>
               <Row>
-                <Text className={styles.text}> Address: {qrMember?.address} </Text>
+                <Text className={styles.text}>
+                  {" "}
+                  Address: {qrMember?.address}{" "}
+                </Text>
               </Row>
             </Card>
           )}
