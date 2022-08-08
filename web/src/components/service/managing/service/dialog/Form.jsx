@@ -3,9 +3,10 @@ import { UploadOutlined } from "@ant-design/icons";
 import Utils from "utils/Utils";
 import FormUtils from "utils/FormUtils";
 import SelectInput from "utils/components/ant_form/input/SelectInput";
-import { urls, formLabels, emptyRecord } from "../config";
+import { urls, formLabels, emptyRecord, SERVICE_TYPE } from "../config";
 import moment from "moment";
-
+import { useRecoilValue } from "recoil";
+import { listSubserviceTypeSt, listSubserviceCategorySt } from "../states";
 /**
  * @callback FormCallback
  *
@@ -24,20 +25,12 @@ const formName = "ServiceForm";
  * @param {Object} props.formRef
  */
 
-const dateFormat = "YYYY/MM/DD";
+const dateFormat = "HH:mm";
 
 export default function ServiceForm({ data, onChange }) {
   const [form] = Form.useForm();
-  const listGender = [
-    {
-      label: "Male",
-      value: 0,
-    },
-    {
-      label: "Female",
-      value: 1,
-    },
-  ];
+  const listSubserviceType = useRecoilValue(listSubserviceTypeSt);
+  const listSubserviceCategory = useRecoilValue(listSubserviceCategorySt);
 
   const initialValues = Utils.isEmpty(data) ? emptyRecord : { ...data };
   const id = initialValues.id;
@@ -62,17 +55,14 @@ export default function ServiceForm({ data, onChange }) {
     content: {
       name: "content",
       label: formLabels.content,
-      rules: [FormUtils.ruleRequired()],
     },
     bookable: {
       name: "bookable",
       label: formLabels.bookable,
-      rules: [FormUtils.ruleRequired()],
     },
     hasMenu: {
       name: "has_menu",
       label: formLabels.hasMenu,
-      rules: [FormUtils.ruleRequired()],
     },
     type: {
       name: "type",
@@ -97,13 +87,14 @@ export default function ServiceForm({ data, onChange }) {
   };
 
   const onFinish = (payload) => {
+    console.log("payload", payload);
     let listImg = [];
     payload?.image_url?.fileList?.map((file) => {
       listImg.push(file.originFileObj);
     });
     payload.image_url = listImg;
-    payload.start_time = moment(payload.time[0]).format("YYYY-MM-DD HH:mm");
-    payload.end_time = moment(payload.time[1]).format("YYYY-MM-DD HH:mm");
+    payload.open_time = moment(payload.open_time).format("HH:mm");
+    payload.close_time = moment(payload.close_time).format("HH:mm");
     Utils.getFormDataPayload();
     FormUtils.submit(endPoint, payload, method)
       .then((data) => onChange(data, id))
@@ -129,23 +120,23 @@ export default function ServiceForm({ data, onChange }) {
         <Input />
       </Form.Item>
       <Form.Item {...formAttrs.type}>
-        <SelectInput options={listGender} />
+        <SelectInput options={SERVICE_TYPE} />
       </Form.Item>
       <Form.Item {...formAttrs.subserviceType}>
-        <SelectInput options={listGender} />
+        <SelectInput options={listSubserviceType} />
       </Form.Item>
       <Form.Item {...formAttrs.openTime}>
-        <TimePicker />
+        <TimePicker format={dateFormat} />
       </Form.Item>
       <Form.Item {...formAttrs.closeTime}>
-        <TimePicker />
+        <TimePicker format={dateFormat} />
       </Form.Item>
-      <Form.Item {...formAttrs.bookable}>
+      {/* <Form.Item {...formAttrs.bookable}>
         <Checkbox />
       </Form.Item>
       <Form.Item {...formAttrs.hasMenu}>
         <Checkbox />
-      </Form.Item>
+      </Form.Item> */}
       <Form.Item {...formAttrs.imageUrl}>
         <Upload
           listType="picture"

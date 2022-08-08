@@ -28,6 +28,10 @@ class ServiceViewSet(GenericViewSet):
 
         result = {
             "items": serializer.data,
+            "extra": {
+                "list_subservice_type": self.mu.get_list_subservice_type(),
+                "list_subservice_category": self.mu.get_list_subservice_category()
+            }
         }
 
         return ResUtils.res(result)
@@ -65,7 +69,8 @@ class ServiceViewSet(GenericViewSet):
     @action(methods=["delete"], detail=False)
     def delete_list(self, request):
         pk = self.request.query_params.get("ids", "")
-        pks = [int(pk)] if pk.isdigit() else map(lambda x: int(x), pk.split(","))
+        pks = [int(pk)] if pk.isdigit() else map(
+            lambda x: int(x), pk.split(","))
         for pk in pks:
             item = get_object_or_404(Service, pk=pk)
             item.delete()

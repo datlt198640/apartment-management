@@ -8,7 +8,7 @@ import SearchInput from "utils/components/table/SearchInput";
 import Utils from "utils/Utils";
 import Dialog from "./dialog";
 import { urls, columns, messages } from "./config";
-import { listSubserviceTypeSt, listSubserviceCategorySt } from "./states";
+import { listGroupSt } from "./states";
 
 const { Text } = Typography;
 
@@ -18,22 +18,6 @@ export default function ServiceTable() {
   const [ids, setIds] = useState([]);
   const [links, setLinks] = useState(defaultLinks);
 
-  const setListSubserviceType = useSetRecoilState(listSubserviceTypeSt);
-  const setListSubserviceCategory = useSetRecoilState(listSubserviceCategorySt);
-
-  const convertIdToLabel = (data) => {
-    Utils.idToLabel(
-      data.items,
-      data.extra.list_subservice_type,
-      "subservice_type"
-    );
-    Utils.idToLabel(
-      data.items,
-      data.extra.list_subservice_category,
-      "subservice_category"
-    );
-  };
-
   const getList =
     (showLoading = false) =>
     (url = "", params = {}) => {
@@ -41,10 +25,7 @@ export default function ServiceTable() {
       Utils.apiCall(url ? url : urls.crud, params)
         .then((resp) => {
           setLinks(resp.data.links);
-          convertIdToLabel(resp.data);
           setList(Utils.appendKey(resp.data.items));
-          setListSubserviceType(resp.data.extra.list_subservice_type);
-          setListSubserviceCategory(resp.data.extra.list_subservice_category);
         })
         .finally(() => {
           setInit(false);
@@ -124,6 +105,8 @@ export default function ServiceTable() {
     },
   };
 
+  console.log("list", list);
+
   return (
     <div>
       <Row style={{ marginBottom: "30px" }}>
@@ -173,11 +156,11 @@ export default function ServiceTable() {
         scroll={{ x: 1000 }}
         pagination={false}
       />
-      {/* <Pagination
+      <Pagination
         next={links.next}
         prev={links.previous}
         onChange={getList(true)}
-      /> */}
+      />
       <Dialog onChange={onChange} />
     </div>
   );

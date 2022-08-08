@@ -4,7 +4,7 @@ import PageHeading from "utils/components/PageHeading";
 import Table from "./Table";
 import { messages } from "./config";
 
-export default function Subservice() {
+export default function Service() {
     return (
         <Wrapper>
             <>
@@ -17,4 +17,4 @@ export default function Subservice() {
     );
 }
 
-Subservice.displayName = "Subservice";
+Service.displayName = "Service";

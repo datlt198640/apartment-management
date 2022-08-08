@@ -1,13 +1,10 @@
-from django.db.models import Q
 from django.db.models import QuerySet
-from django.contrib.auth.models import Group
-from services.helpers.utils import Utils
 from services.models.repo import Repo
-from modules.account.user.helpers.srs import UserSr
-from modules.account.helpers.group_srs import GroupSr
+from ..models import SubserviceType, SubserviceCategory
+from .srs import SubserviceTypeSr, SubserviceCategorySr
 
 
-class DishModelUtils:
+class SubserviceModelUtils:
     def __init__(self):
         self.model = Repo.load(Repo.SERVICE)
 
@@ -22,7 +19,7 @@ class DishModelUtils:
                 return data
 
             try:
-                instance = self.model.objects.get(title = data["title"])
+                instance = self.model.objects.get(title=data["title"])
             except self.model.DoesNotExist:
                 instance = self.create_item(data)
             return instance
@@ -31,3 +28,13 @@ class DishModelUtils:
             return [get_data(i) for i in range(1, index + 1)]
 
         return get_data(index) if single is True else get_list_data(index)
+
+    def get_list_subservice_type(self):
+        data = SubserviceType.objects.all()
+        srs = SubserviceTypeSr(data, many=True)
+        return [{"label": subservice_type["title"], "value":subservice_type["id"]} for subservice_type in srs.data]
+
+    def get_list_subservice_category(self):
+        data = SubserviceCategory.objects.all()
+        srs = SubserviceCategorySr(data, many=True)
+        return [{"label": subservice_type["title"], "value":subservice_type["id"]} for subservice_type in srs.data]

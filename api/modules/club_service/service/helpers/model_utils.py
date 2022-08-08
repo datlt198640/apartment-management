@@ -4,6 +4,8 @@ from services.helpers.utils import Utils
 from services.models.repo import Repo
 from .srs import ServiceSr, ServiceTimeSr, ImageServiceSr
 from ..models import ImageService
+from modules.club_service.subservice.models import SubserviceCategory, SubserviceType
+from modules.club_service.subservice.helpers.srs import SubserviceCategorySr, SubserviceTypeSr
 
 
 def add_image(images, service_obj):
@@ -13,6 +15,7 @@ def add_image(images, service_obj):
             img_sr = ImageServiceSr(data=image_obj)
             img_sr.is_valid(raise_exception=True)
             img_sr.save()
+
 
 class ServiceModelUtils:
     def __init__(self):
@@ -29,7 +32,7 @@ class ServiceModelUtils:
                 return data
 
             try:
-                instance = self.model.objects.get(title = data["title"])
+                instance = self.model.objects.get(title=data["title"])
             except self.model.DoesNotExist:
                 instance = self.create_item(data)
             return instance
@@ -55,7 +58,8 @@ class ServiceModelUtils:
         return service
 
     def update_item(self, obj, data):
-        service_time_sr = ServiceTimeSr(obj.servicetime, data=data, partial=True)
+        service_time_sr = ServiceTimeSr(
+            obj.servicetime, data=data, partial=True)
         service_time_sr.is_valid(raise_exception=True)
         service_time_sr.save()
 
@@ -67,3 +71,13 @@ class ServiceModelUtils:
         sr = ServiceSr(obj, data=data, partial=True)
         sr.is_valid(raise_exception=True)
         return sr.save()
+
+    def get_list_subservice_type(self):
+        data = SubserviceType.objects.all()
+        srs = SubserviceTypeSr(data, many=True)
+        return [{"label": subservice_type["title"], "value":subservice_type["id"]} for subservice_type in srs.data]
+
+    def get_list_subservice_category(self):
+        data = SubserviceCategory.objects.all()
+        srs = SubserviceCategorySr(data, many=True)
+        return [{"label": subservice_type["title"], "value":subservice_type["id"]} for subservice_type in srs.data]

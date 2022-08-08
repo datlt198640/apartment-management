@@ -7,6 +7,7 @@ from services.drf_classes.custom_permission import CustomPermission
 from services.helpers.res_utils import ResUtils
 from ..models import SubserviceCategory
 from ..helpers.srs import SubserviceCategorySr
+from ..helpers.model_utils import SubserviceModelUtils
 
 
 class SubserviceCategoryViewSet(GenericViewSet):
@@ -16,6 +17,9 @@ class SubserviceCategoryViewSet(GenericViewSet):
     serializer_class = SubserviceCategorySr
     search_fields = ["title"]
 
+    def __init__(self):
+        self.model_utils = SubserviceModelUtils()
+
     def list(self, request):
         queryset = SubserviceCategory.objects.all()
         queryset = self.filter_queryset(queryset)
@@ -24,6 +28,9 @@ class SubserviceCategoryViewSet(GenericViewSet):
 
         result = {
             "items": serializer.data,
+            "extra": {
+                "list_subservice_type": self.model_utils.get_list_subservice_type()
+            }
         }
 
         return self.get_paginated_response(result)
@@ -61,7 +68,8 @@ class SubserviceCategoryViewSet(GenericViewSet):
     @action(methods=["delete"], detail=False)
     def delete_list(self, request):
         pk = self.request.query_params.get("ids", "")
-        pks = [int(pk)] if pk.isdigit() else map(lambda x: int(x), pk.split(","))
+        pks = [int(pk)] if pk.isdigit() else map(
+            lambda x: int(x), pk.split(","))
         for pk in pks:
             item = get_object_or_404(SubserviceCategory, pk=pk)
             item.delete()

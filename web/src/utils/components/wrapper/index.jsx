@@ -124,13 +124,13 @@ export default function Wrapper({ children }) {
                 </NavLink>
               </Menu.Item>
               <Menu.Item key="/stay" style={{ margin: "30px auto" }}>
-                <NavLink to="/manage-subservice">
+                <NavLink to="/manage-subservice-type">
                   <AccountBookOutlined />
                   <MenuLabel collapsed={collapsed} label="Subservice Type" />
                 </NavLink>
               </Menu.Item>
               <Menu.Item key="/stay" style={{ margin: "30px auto" }}>
-                <NavLink to="/manage-subservice">
+                <NavLink to="/manage-subservice-category">
                   <AccountBookOutlined />
                   <MenuLabel
                     collapsed={collapsed}

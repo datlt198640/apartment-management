@@ -16,12 +16,12 @@ export class Service {
 }
 
 /**
- * SubserviceDialog.
+ * CustomerDialog.
  *
  * @param {Object} props
  * @param {function} props.onChange - (data: Dict, id: number) => void
  */
-export default function SubserviceDialog({ onChange }) {
+export default function CustomerDialog({ onChange }) {
     const [data, setData] = useState({ ...emptyRecord });
     const [open, setOpen] = useState(false);
     const [id, setId] = useState(0);
@@ -74,5 +74,5 @@ export default function SubserviceDialog({ onChange }) {
     );
 }
 
-SubserviceDialog.displayName = "SubserviceDialog";
-SubserviceDialog.toggle = Service.toggle;
+CustomerDialog.displayName = "CustomerDialog";
+CustomerDialog.toggle = Service.toggle;

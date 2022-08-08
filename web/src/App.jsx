@@ -11,6 +11,8 @@ import CheckIn from "components/check_in/check";
 import BookingEvent from "components/event/booking";
 import ManageService from "components/service/managing/service";
 import ManageSubservice from "components/service/managing/subservice";
+import ManageSubserviceType from "components/service/managing/subservice_type";
+import ManageSubserviceCategory from "components/service/managing/subservice_category";
 import Event from "components/event/create";
 import BookingStay from "components/service/booking/stay";
 import BookingCelebrate from "components/service/booking/celebrate";
@@ -45,12 +47,12 @@ function App() {
             />
             <PrivateRoute
               path="/manage-subservice-type"
-              component={ManageSubservice}
+              component={ManageSubserviceType}
               exact
             />
             <PrivateRoute
               path="/manage-subservice-category"
-              component={ManageSubservice}
+              component={ManageSubserviceCategory}
               exact
             />
             <PrivateRoute path="/event" component={Event} exact />

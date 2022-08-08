@@ -8,30 +8,25 @@ import SearchInput from "utils/components/table/SearchInput";
 import Utils from "utils/Utils";
 import Dialog from "./dialog";
 import { urls, columns, messages } from "./config";
-import { listGroupSt } from "./states";
+import { listSubserviceCategorySt } from "./states";
 
 const { Text } = Typography;
 
-export default function ServiceTable() {
+export default function SubserviceTable() {
   const [init, setInit] = useState(true);
   const [list, setList] = useState([]);
   const [ids, setIds] = useState([]);
   const [links, setLinks] = useState(defaultLinks);
 
-  const setListGroup = useSetRecoilState(listGroupSt);
+  const setSubserviceCategory = useSetRecoilState(listSubserviceCategorySt);
 
   const convertIdToLabel = (data) => {
-    const genderValue = [
-      { value: 0, label: "Male" },
-      { value: 1, label: "Female" },
-    ];
 
     Utils.idToLabel(
       data.items,
-      data.extra.list_membership_type,
-      "membership_type"
+      data.extra.list_subservice_category,
+      "subservice_category"
     );
-    Utils.idToLabel(data.items, genderValue, "gender");
   };
 
   const getList =
@@ -43,7 +38,7 @@ export default function ServiceTable() {
           setLinks(resp.data.links);
           convertIdToLabel(resp.data);
           setList(Utils.appendKey(resp.data.items));
-          setListGroup(resp.data.extra.list_group);
+          setSubserviceCategory(resp.data.extra.list_subservice_category);
         })
         .finally(() => {
           setInit(false);
@@ -182,4 +177,4 @@ export default function ServiceTable() {
   );
 }
 
-ServiceTable.displayName = "ServiceTable";
+SubserviceTable.displayName = "SubserviceTable";
