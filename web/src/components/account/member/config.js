@@ -29,6 +29,9 @@ export const emptyRecord = {
   dob: "",
   occupation: "",
   address: "",
+  register_date: "",
+  expire_date: "",
+  membership_type: "",
 };
 
 export const formLabels = {
@@ -42,6 +45,9 @@ export const formLabels = {
   occupation: "Occupation",
   address: "Address",
   memberUID: "Member ID",
+  register_date: "Register Date",
+  expire_date: "Expired Date",
+  membership_type: "Membership Type",
 };
 
 export const columns = [
@@ -89,8 +95,20 @@ export const columns = [
   },
   {
     key: "membership_type",
-    title: "Type",
+    title: "MembershipType",
     dataIndex: "membership_type",
+    width: 100,
+  },
+  {
+    key: "register_date",
+    title: "Register Date",
+    dataIndex: "register_date",
+    width: 100,
+  },
+  {
+    key: "expire_date",
+    title: "Expired Date",
+    dataIndex: "expire_date",
     width: 100,
   },
   {

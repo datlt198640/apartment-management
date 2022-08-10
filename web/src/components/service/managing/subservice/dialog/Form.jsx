@@ -24,7 +24,7 @@ const formName = "SubserviceForm";
  * @param {Object} props.formRef
  */
 
-const dateFormat = "HH:mm";
+const dateFormat = "HH:mm:ss";
 
 export default function SubserviceForm({ data, onChange }) {
   const [form] = Form.useForm();
@@ -33,8 +33,10 @@ export default function SubserviceForm({ data, onChange }) {
   const initialValues = Utils.isEmpty(data) ? emptyRecord : { ...data };
   const id = initialValues.id;
 
-  const dobObj = new Date(initialValues.dob);
-  initialValues.dob = moment(dobObj);
+  console.log("initialValues", initialValues);
+
+  const openTimeObj = new Date(initialValues.open_time);
+  initialValues.open_time = moment(openTimeObj);
 
   const endPoint = id ? `${urls.crud}${id}` : urls.crud;
   const method = id ? "put" : "post";

@@ -16,6 +16,7 @@ class Repo:
     EVENT = ("modules.event.event.models", "Event")
 
     VERIF = ("modules.noti.verif.models", "Verif")
+    VERIF_LOG = ("modules.noti.verif.models", "VerifLog")
     NOTIFICATION = ("modules.noti.notification.models", "Notification")
 
     WHITELIST_TARGET = ("modules.noti.verif.models", "WhitelistTarget")

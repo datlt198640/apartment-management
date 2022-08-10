@@ -2,17 +2,13 @@ import * as React from "react";
 import { useEffect, useState } from "react";
 import { useSetRecoilState } from "recoil";
 import { Row, Col, Button, Table, Typography } from "antd";
-import {
-  EditOutlined,
-  DeleteOutlined,
-  PlusOutlined,
-} from "@ant-design/icons";
+import { EditOutlined, DeleteOutlined, PlusOutlined } from "@ant-design/icons";
 import Pagination, { defaultLinks } from "utils/components/table/Pagination";
 import SearchInput from "utils/components/table/SearchInput";
 import Utils from "utils/Utils";
 import Dialog from "./dialog";
 import { urls, columns, messages } from "./config";
-import { listGroupSt } from "./states";
+import { listGroupSt, listMembershipTypeSt } from "./states";
 
 const { Text } = Typography;
 
@@ -23,6 +19,7 @@ export default function MemberTable() {
   const [links, setLinks] = useState(defaultLinks);
 
   const setListGroup = useSetRecoilState(listGroupSt);
+  const setListMembershipType = useSetRecoilState(listMembershipTypeSt);
 
   const convertIdToLabel = (data) => {
     const genderValue = [
@@ -48,6 +45,7 @@ export default function MemberTable() {
           convertIdToLabel(resp.data);
           setList(Utils.appendKey(resp.data.items));
           setListGroup(resp.data.extra.list_group);
+          setListMembershipType(resp.data.extra.list_membership_type);
         })
         .finally(() => {
           setInit(false);

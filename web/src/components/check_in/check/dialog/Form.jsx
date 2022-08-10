@@ -58,7 +58,6 @@ export default function CheckInForm({ data, onChange }) {
   };
 
   const handleScan = (data) => {
-    console.log("data", data);
     if (data) {
       const result = listMember.filter((member) => member.uid == data)[0];
       if (!result) {
@@ -114,7 +113,14 @@ export default function CheckInForm({ data, onChange }) {
           </Form>
         </Col>
         <Col xs={4} sm={4} md={4} lg={4} xl={4} xxl={4}>
-          <ArrowRightOutlined className={styles.icon} />
+          <ArrowRightOutlined
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              fontSize: "30px",
+            }}
+          />
         </Col>
         <Col
           xs={10}
@@ -132,11 +138,27 @@ export default function CheckInForm({ data, onChange }) {
               <Row justify={"center"} align={"center"}>
                 <Avatar src={qrMember?.avatar} className={styles.avatar} />
               </Row>
-              <Text className={styles.title} style={{ marginBottom: 0 }}>
-                {qrMember?.full_name}{" "}
+              <Text
+                style={{
+                  marginBottom: 0,
+                  textAlign: "center",
+                  display: "block",
+                }}
+              >
+                {qrMember?.full_name}
               </Text>
-              <Row>
-                <Text className={styles.subTitle}>
+              <Row
+                style={{
+                  width: "100%",
+                  display: "block",
+                }}
+              >
+                <Text
+                  style={{
+                    textAlign: "center",
+                    display: "block",
+                  }}
+                >
                   {qrMember?.membership_type?.title}{" "}
                 </Text>
               </Row>

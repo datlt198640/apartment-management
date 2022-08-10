@@ -4,7 +4,8 @@ import FormUtils from "utils/FormUtils";
 import SelectInput from "utils/components/ant_form/input/SelectInput";
 import { urls, formLabels, emptyRecord } from "../config";
 import moment from "moment";
-
+import { useRecoilValue } from "recoil";
+import { listMembershipTypeSt } from "../states";
 /**
  * @callback FormCallback
  *
@@ -23,10 +24,11 @@ const formName = "MemberForm";
  * @param {Object} props.formRef
  */
 
-const dateFormat = "YYYY/MM/DD";
+const dateFormat = "DD/MM/YYYY";
 
 export default function MemberForm({ data, onChange }) {
   const [form] = Form.useForm();
+  const listMembershipType = useRecoilValue(listMembershipTypeSt);
   const listGender = [
     {
       label: "Male",
@@ -44,6 +46,12 @@ export default function MemberForm({ data, onChange }) {
   const dobObj = new Date(initialValues.dob);
   initialValues.dob = moment(dobObj);
 
+  const registerDateObj = new Date(initialValues.register_date);
+  initialValues.register_date = moment(registerDateObj);
+
+  const expiryObj = new Date(initialValues.expire_date);
+  initialValues.expire_date = moment(expiryObj);
+
   const endPoint = id ? `${urls.crud}${id}` : urls.crud;
   const method = id ? "put" : "post";
 
@@ -51,12 +59,10 @@ export default function MemberForm({ data, onChange }) {
     phoneNumber: {
       name: "phone_number",
       label: formLabels.phoneNumber,
-      rules: [FormUtils.ruleRequired()],
     },
     email: {
       name: "email",
       label: formLabels.email,
-      rules: [FormUtils.ruleRequired()],
     },
     fullName: {
       name: "full_name",
@@ -85,9 +91,17 @@ export default function MemberForm({ data, onChange }) {
       name: "address",
       label: formLabels.address,
     },
-    group: {
-      name: "group",
-      label: formLabels.groups,
+    registerDate: {
+      name: "register_date",
+      label: formLabels.register_date,
+    },
+    expireDate: {
+      name: "expire_date",
+      label: formLabels.expire_date,
+    },
+    membershipType: {
+      name: "membership_type",
+      label: formLabels.membership_type,
     },
   };
 
@@ -130,6 +144,15 @@ export default function MemberForm({ data, onChange }) {
           <Input.Password />
         </Form.Item>
       )}
+      <Form.Item {...formAttrs.membershipType}>
+        <SelectInput options={listMembershipType} />
+      </Form.Item>
+      <Form.Item {...formAttrs.registerDate}>
+        <DatePicker format={dateFormat} />
+      </Form.Item>
+      <Form.Item {...formAttrs.expireDate}>
+        <DatePicker format={dateFormat} />
+      </Form.Item>
     </Form>
   );
 }

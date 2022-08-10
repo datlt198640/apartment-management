@@ -71,7 +71,7 @@ export default function Wrapper({ children }) {
             fontSize: "30px",
           }}
         >
-          APTM
+          CEM
         </div>
         {/* <Divider /> */}
         <Menu

@@ -7,7 +7,7 @@ import Pagination, { defaultLinks } from "utils/components/table/Pagination";
 import SearchInput from "utils/components/table/SearchInput";
 import Utils from "utils/Utils";
 import Dialog from "./dialog";
-import { urls, columns, messages } from "./config";
+import { urls, columns, messages, SERVICE_TYPE } from "./config";
 import { listSubserviceTypeSt, listSubserviceCategorySt } from "./states";
 
 const { Text } = Typography;
@@ -32,6 +32,7 @@ export default function ServiceTable() {
       data.extra.list_subservice_category,
       "subservice_category"
     );
+    Utils.idToLabel(data.items, SERVICE_TYPE, "type");
   };
 
   const getList =

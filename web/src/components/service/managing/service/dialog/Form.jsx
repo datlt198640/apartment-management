@@ -30,13 +30,15 @@ const dateFormat = "HH:mm";
 export default function ServiceForm({ data, onChange }) {
   const [form] = Form.useForm();
   const listSubserviceType = useRecoilValue(listSubserviceTypeSt);
-  const listSubserviceCategory = useRecoilValue(listSubserviceCategorySt);
 
   const initialValues = Utils.isEmpty(data) ? emptyRecord : { ...data };
   const id = initialValues.id;
 
-  const dobObj = new Date(initialValues.dob);
-  initialValues.dob = moment(dobObj);
+  const closeTimeObj = new Date(initialValues.close_time);
+  initialValues.close_time = moment(closeTimeObj);
+
+  const openTimeObj = new Date(initialValues.open_time);
+  initialValues.open_time = moment(openTimeObj);
 
   const endPoint = id ? `${urls.crud}${id}` : urls.crud;
   const method = id ? "put" : "post";
@@ -87,7 +89,6 @@ export default function ServiceForm({ data, onChange }) {
   };
 
   const onFinish = (payload) => {
-    console.log("payload", payload);
     let listImg = [];
     payload?.image_url?.fileList?.map((file) => {
       listImg.push(file.originFileObj);
