@@ -119,7 +119,7 @@ export default function ServiceTable() {
             <Col span={19}>
               <SearchInput
                 onChange={searchList}
-                placeHolder="Search for member's name, email, phone number, and email"
+                placeHolder="Search for subservice type's title"
               />
             </Col>
           </Row>
@@ -131,7 +131,7 @@ export default function ServiceTable() {
             onClick={() => Dialog.toggle()}
             style={{ marginRight: "1vw" }}
           >
-            Thêm mới
+            Add New
           </Button>
           <Button
             type="primary"
@@ -140,7 +140,7 @@ export default function ServiceTable() {
             disabled={!ids.length}
             onClick={() => onBulkDelete(ids)}
           >
-            Xoá chọn
+            Delete
           </Button>
         </Col>
       </Row>

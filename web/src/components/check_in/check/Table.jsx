@@ -10,7 +10,12 @@ import Utils from "utils/Utils";
 import Dialog from "./dialog";
 import { useDidMountEffect } from "utils/CustomHooks/useDidMountEffect";
 import { urls, labels, messages } from "./config";
-import { listMemberSt, listMemberEmailSt, listMemberPhoneNumberSt, listMemberShipTypeCheckInSt } from "./states";
+import {
+  listMemberSt,
+  listMemberEmailSt,
+  listMemberPhoneNumberSt,
+  listMemberShipTypeCheckInSt,
+} from "./states";
 import moment from "moment";
 import { notification } from "antd";
 
@@ -24,7 +29,6 @@ const initialFilter = {
   is_check_out: 2,
   page: 1,
 };
-
 
 const validateFilter = (filter) => {
   for (let propName in filter) {
@@ -47,7 +51,7 @@ const initialMemberInf = {
   membership_type: "",
   register_date: "",
   expire_date: "",
-}
+};
 
 export default function CheckInTable() {
   const [init, setInit] = useState(true);
@@ -68,12 +72,15 @@ export default function CheckInTable() {
   };
 
   const convertIdToLabel = (data) => {
-
-    const genderValue =  [
-      {value: 0, label: 'Male'},
-      {value: 1, label: 'Female'},
-    ]
-    Utils.idToLabel(data.items, data.extra.list_membership_type, "membership_type");
+    const genderValue = [
+      { value: 0, label: "Male" },
+      { value: 1, label: "Female" },
+    ];
+    Utils.idToLabel(
+      data.items,
+      data.extra.list_membership_type,
+      "membership_type"
+    );
     Utils.idToLabel(data.items, data.extra.list_member_label, "member");
     Utils.idToLabel(data.items, genderValue, "gender");
   };
@@ -179,22 +186,26 @@ export default function CheckInTable() {
       width: 120,
       render: (_text, record) => {
         return (
-          <a type="default" htmlType="button" size="small" onClick={() => {
-            setVisible(true)
-            setMemberInf({
-              phoneNumber: record.member_real_phone_number,
-              email: record.member_real_email,
-              fullName: record.member_real_name,
-              gender: record.gender,
-              dob: record.dob,
-              occupation: record.occupation,
-              address: record.address,
-              avatar: record.avatar,
-              membership_type: record.membership_type,
-              register_date: record.register_date,
-              expire_date: record.expire_date,
-            })
-          }}
+          <a
+            type="default"
+            htmlType="button"
+            size="small"
+            onClick={() => {
+              setVisible(true);
+              setMemberInf({
+                phoneNumber: record.member_real_phone_number,
+                email: record.member_real_email,
+                fullName: record.member_real_name,
+                gender: record.gender,
+                dob: record.dob,
+                occupation: record.occupation,
+                address: record.address,
+                avatar: record.avatar,
+                membership_type: record.membership_type,
+                register_date: record.register_date,
+                expire_date: record.expire_date,
+              });
+            }}
           >
             {_text}
           </a>
@@ -206,7 +217,9 @@ export default function CheckInTable() {
       title: labels.memberEmail,
       dataIndex: "member_email",
       render: (_text, record) => {
-        return <a href={`mailto: ${record.member_email}`}> {record.member_email}</a>;
+        return (
+          <a href={`mailto: ${record.member_email}`}> {record.member_email}</a>
+        );
       },
     },
     {
@@ -215,7 +228,12 @@ export default function CheckInTable() {
       dataIndex: "member_phone_number",
       width: 140,
       render: (_text, record) => {
-        return <a href={`tel:${record.member_phone_number}`}> {record.member_phone_number}</a>;
+        return (
+          <a href={`tel:${record.member_phone_number}`}>
+            {" "}
+            {record.member_phone_number}
+          </a>
+        );
       },
     },
     {
@@ -261,7 +279,11 @@ export default function CheckInTable() {
     if (key == "is_check_out") {
       params = { ...filter, [key]: value };
     } else if (key == "check_in") {
-      params = { ...filter, start_check_in: value[0]?.toISOString(), end_check_in: value[1]?.toISOString() };
+      params = {
+        ...filter,
+        start_check_in: value[0]?.toISOString(),
+        end_check_in: value[1]?.toISOString(),
+      };
     } else if (key == "check_out") {
       params = {
         ...filter,
@@ -283,22 +305,33 @@ export default function CheckInTable() {
 
   useDidMountEffect(() => {
     getList()("", validateFilter(filter));
-  }, [filter])
-  
+  }, [filter]);
+
   return (
     <div>
-      <Row style={{ marginBottom: "1em" }} >
+      <Row style={{ marginBottom: "1em" }}>
         <Col span={12}>
           <Row justify="start" align="middle">
-            <Text strong style={{ width: "5em" }} > Search: </Text>
+            <Text strong style={{ width: "5em" }}>
+              {" "}
+              Search:{" "}
+            </Text>
             <Col span={19}>
-              <SearchInput onChange={(values) => setAndSendFilter("search", values)} placeHolder="Search for member's name, email, phone number" />
+              <SearchInput
+                onChange={(values) => setAndSendFilter("search", values)}
+                placeHolder="Search for member's name, email, phone number"
+              />
             </Col>
           </Row>
         </Col>
         <Col span={12} className="right">
-          <Button type="primary" icon={<PlusOutlined />} onClick={() => Dialog.toggle()} style={{ marginRight: "1vw" }}>
-            Thêm mới
+          <Button
+            type="primary"
+            icon={<PlusOutlined />}
+            onClick={() => Dialog.toggle()}
+            style={{ marginRight: "1vw" }}
+          >
+            Add New
           </Button>
           <Button
             type="primary"
@@ -307,19 +340,25 @@ export default function CheckInTable() {
             disabled={!ids.length}
             onClick={() => onBulkDelete(ids)}
           >
-            Xoá chọn
+            Delete
           </Button>
         </Col>
       </Row>
-      <Row style={{ marginBottom: "1em" }} >
+      <Row style={{ marginBottom: "1em" }}>
         <Col span={12}>
           <Row justify="start" align="middle">
-            <Text strong style={{ width: "5em" }} > Check in: </Text>
+            <Text strong style={{ width: "5em" }}>
+              {" "}
+              Check in:{" "}
+            </Text>
             <Col span={19}>
               <RangePicker
                 ranges={{
                   Today: [moment(), moment()],
-                  "This Month": [moment().startOf("month"), moment().endOf("month")],
+                  "This Month": [
+                    moment().startOf("month"),
+                    moment().endOf("month"),
+                  ],
                 }}
                 showTime
                 format="YYYY/MM/DD HH:mm"
@@ -330,13 +369,19 @@ export default function CheckInTable() {
           </Row>
         </Col>
         <Col span={12}>
-          <Row justify="end" align="middle" >
-            <Text strong style={{ marginRight: "9px" }}> Check out: </Text>
+          <Row justify="end" align="middle">
+            <Text strong style={{ marginRight: "9px" }}>
+              {" "}
+              Check out:{" "}
+            </Text>
             <Col span={19}>
               <RangePicker
                 ranges={{
                   Today: [moment(), moment()],
-                  "This Month": [moment().startOf("month"), moment().endOf("month")],
+                  "This Month": [
+                    moment().startOf("month"),
+                    moment().endOf("month"),
+                  ],
                 }}
                 showTime
                 format="YYYY/MM/DD HH:mm"
@@ -348,7 +393,9 @@ export default function CheckInTable() {
         </Col>
       </Row>
       <Row style={{ marginBottom: "3em" }} justify="start" align="middle">
-        <Text strong style={{ width: "5em" }}>Status:</Text>
+        <Text strong style={{ width: "5em" }}>
+          Status:
+        </Text>
         <Col span={19}>
           <Select
             defaultValue={2}
@@ -372,8 +419,17 @@ export default function CheckInTable() {
         scroll={{ x: 1000 }}
         pagination={false}
       />
-      <Pagination next={links.next} prev={links.previous} onChange={getList()} />
-      <DrawerAnt data={memberInf} visible={visible} onClose={onClose} placement="right"  />
+      <Pagination
+        next={links.next}
+        prev={links.previous}
+        onChange={getList()}
+      />
+      <DrawerAnt
+        data={memberInf}
+        visible={visible}
+        onClose={onClose}
+        placement="right"
+      />
       <Dialog onChange={onChange} />
     </div>
   );

@@ -11,7 +11,7 @@ const urlMap = {
 
 export const urls = Utils.prefixMapValues(urlMap.base);
 
-const headingTxt = "Service ";
+const headingTxt = "Subservice Category ";
 export const messages = {
   heading: headingTxt,
   deleteOne: `Do you want to delete this ${headingTxt.toLowerCase()}?`,

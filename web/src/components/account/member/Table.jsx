@@ -149,7 +149,7 @@ export default function MemberTable() {
             onClick={() => Dialog.toggle()}
             style={{ marginRight: "1vw" }}
           >
-            Thêm mới
+            Add New
           </Button>
           <Button
             type="primary"
@@ -158,7 +158,7 @@ export default function MemberTable() {
             disabled={!ids.length}
             onClick={() => onBulkDelete(ids)}
           >
-            Xoá chọn
+            Delete
           </Button>
         </Col>
       </Row>

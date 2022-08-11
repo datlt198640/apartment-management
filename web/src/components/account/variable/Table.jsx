@@ -129,7 +129,7 @@ export default function VariableTable() {
                         disabled={!ids.length}
                         onClick={() => onBulkDelete(ids)}
                     >
-                        Xoá chọn
+                        Delete
                     </Button>
                 </Col>
                 <Col span={12} className="right">
@@ -138,7 +138,7 @@ export default function VariableTable() {
                         icon={<PlusOutlined />}
                         onClick={() => Dialog.toggle()}
                     >
-                        Thêm mới
+                        Add New
                     </Button>
                 </Col>
             </Row>

@@ -9,7 +9,6 @@ import Dialog from "./dialog";
 import { urls, labels, messages } from "./config";
 import moment from "moment";
 
-
 const { Text } = Typography;
 
 export default function EventTable() {
@@ -146,18 +145,29 @@ export default function EventTable() {
   };
   return (
     <div>
-      <Row style={{ marginBottom: "30px" }} >
+      <Row style={{ marginBottom: "30px" }}>
         <Col span={12}>
-        <Row justify="start" align="middle">
-            <Text strong style={{ width: "5em" }} > Search: </Text>
+          <Row justify="start" align="middle">
+            <Text strong style={{ width: "5em" }}>
+              {" "}
+              Search:{" "}
+            </Text>
             <Col span={19}>
-              <SearchInput onChange={(values) => setAndSendFilter("search", values)} placeHolder="Search for member's name, email, phone number" />
+              <SearchInput
+                onChange={(values) => setAndSendFilter("search", values)}
+                placeHolder="Search for member's name, email, phone number"
+              />
             </Col>
           </Row>
         </Col>
         <Col span={12} className="right">
-          <Button type="primary" icon={<PlusOutlined />} onClick={() => Dialog.toggle()} style={{ marginRight: "1vw" }}>
-            Thêm mới
+          <Button
+            type="primary"
+            icon={<PlusOutlined />}
+            onClick={() => Dialog.toggle()}
+            style={{ marginRight: "1vw" }}
+          >
+            Add New
           </Button>
           <Button
             type="primary"
@@ -166,7 +176,7 @@ export default function EventTable() {
             disabled={!ids.length}
             onClick={() => onBulkDelete(ids)}
           >
-            Xoá chọn
+            Delete
           </Button>
         </Col>
       </Row>
@@ -182,7 +192,11 @@ export default function EventTable() {
         scroll={{ x: 1000 }}
         pagination={false}
       />
-      <Pagination next={links.next} prev={links.previous} onChange={getList()} />
+      <Pagination
+        next={links.next}
+        prev={links.previous}
+        onChange={getList()}
+      />
       <Dialog onChange={onChange} list={list} />
     </div>
   );
